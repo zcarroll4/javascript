@@ -142,6 +142,10 @@
 			z.style.color = "black";
 	}
 	}
+	function multiplyNumber(inputValue){
+		var newValue = inputValue * 10;
+		return newValue;
+	}
 
 	
 </script>
@@ -162,11 +166,12 @@
 </div>
 
 <body>
-	<h2 id="title">4.) Changing Text Function</h2>
-	<h3 id="post-title">Hello World </h3>
-	<button onclick="changeText()">Change Title Text Once!</button>
-	<br><br>
-	<button onclick="changeTextLoop()">Change Title Text Unlimted Times!</button>
+	<h2 id="title">4.) Multiplication Function</h2>
+	<h3 id="post-title">Multiples of 10, Enter a Value.</h3>
+	<form>
+		<input type="text" name="inputValue">
+	</form>
+	<button onclick="multiplyNumber(inputValue)">Calculate</button>
 
 	<br><br><br><br>
 
