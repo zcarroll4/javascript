@@ -1,7 +1,11 @@
 <html>
 <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/lux/bootstrap.min.css">
 <title>Javascript 2 Practice</title>
 	<style>
+		body {
+			background-color: lightgray;
+		}
 		.header {
 			display: grid;
 			width: 100%;
@@ -96,109 +100,104 @@
 </head>
 <!--Script, 1.) Get Input 2.) Change Input text -->
 <script>
-	
-	<!-- 1.) Change Text Function Once Time -->
-	function changeText(){
-		document.getElementById('post-title').innerHTML = "Have a blessed day! "
+	window.onload = function(){
+		var random = Math.floor((Math.random() *10) +1);
+		document.getElementById('randomNum').innerHTML=random;
+		document.getElementById('multplicationGuess').value='';
 	}
-	<!-- 1.A) Change Text Function Unlimted Times -->
-	function changeTextLoop(){
-		document.getElementById('post-title').innerHTML = document.getElementById('post-title').innerHTML + "Have a blessed day! "
-	}
-	
-	<!-- 2.) Get User Input Function -->
-	function userInput (){
-		var user = prompt("Please enter your name");
-		if(user !=null){
-		document.getElementById('demo').innerHTML = "Hello " + user +"! " + "How are you today?"
-	}
-	}
-	
-	<!-- 3.) Reply -->
-	function replyOutput (){
-		var reply = prompt("How are you today?");
-		document.getElementById('demo2').innerHTML =  reply +"\t"+ "\n Well that's great, we're glad to hear that!"
-	}
-	
-	<!-- 4.) Change Text Color -->
-	function changeColor(){
-		<!-- Change Color to Red -->
-		var z = document.getElementById('color-text');
-		if (z.style.color != "red"){
-			z.style.color = "red";
+	function multiplyNumber(){
+		var inputValue = document.getElementById('inputValue').value;
+		var inputLength = document.getElementById('inputValue').value.length;
+		if(inputLength <= 0 ){
+			document.getElementById('showAlert').style.display='inline-block';
+		} else {
+			document.getElementById('showAlert').style.display='none';
+			var newValue = inputValue * 10;
+			document.getElementById('result').innerHTML = '=' + newValue;
+			document.getElementById('multnBtn').style.display = 'none';
+			document.getElementById('doAnother').style.display = 'inline-block';
 		}
 	}
-	function changeColor2(){
-		<!-- Change Color to Blue -->
-		var z = document.getElementById('color-text');
-		if (z.style.color != "blue"){
-			z.style.color = "blue";
+	function doAnother(){
+		document.getElementById('doAnother').style.display='none';
+		document.getElementById('multnBtn').style.display='inline-block';
+		document.getElementById('result').innerHTML = '';
+		document.getElementById('inputValue').value = '';
 	}
+	function checkMultplication(){
+		var correctAnswer = document.getElementById('randomNum').innerHTML * 10;
+		var userAnswer = document.getElementById('multplicationGuess').value;
+		var userAnswerLength = document.getElementById('multplicationGuess').value.length;
+		if(userAnswerLength <= 0){
+			alert('Your answer can not be blank');
+		} else {
+			if (userAnswer == correctAnswer){
+				alert('Awesome, Your Answer is correct!');
+				window.onload();
+			} else {
+				alert("Incorrect, try again!");				
+			}
+		}
 	}
-	function changeColor3(){
-		<!-- Change Color back to Black -->
-		var z = document.getElementById('color-text');
-		if (z.style.color != "black"){
-			z.style.color = "black";
-	}
-	}
-	function multiplyNumber(inputValue){
-		var inputValue = document.getElementById('inputValue').value;
-		var newValue = inputValue * 10;
-		document.getElementById('result').innerHTML = newValue;
-		return newValue;
-	}
-
-	
 </script>
 <section id="top"></section>
+<div class="container" style="background-color:#fff;">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+				<a class="navbar-brand" href="#"><img src="../js-icon.png" width="50"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+			  
+				<div class="collapse navbar-collapse" id="navbarColor01">
+				  <ul class="navbar-nav mr-auto">		
+					<li class="nav-item">
+					  <a class="nav-link" href="../">Javascript 1</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#">Javascript 2</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#">Javascript 3</a>
+					</li>
+				  </ul>
+				  <form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="text" placeholder="Search">
+					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+				  </form>
+				</div>
+			  </nav>
 <div class="header"><h1>Javascript Practice #2</h1>
-<div class="Name"><h3>Zachary Carroll</h3></div>
-<div class="header-menu">
-   <div class="dropdown">
-    <button class="dropbtn" style="font-weight:bold; text-decoration:underline;">Javascript 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="../">Javascript 1</a>
-      <a href="./">Javascript 2</a>
-      <a href="#">Link 3</a></div>
-</div>
-</div>
-</div>
-
+<div class="Name"><h3>Zachary Carroll</h3></div></div>
 <body>
+<!-- ------------------------------------------------------------------------------------------------------- -->
 	<h2 id="title">4.) Multiplication Function</h2>
 	<h3 id="post-title">Multiples of 10, Enter a Value.</h3>
+	<div class="alert alert-dismissible alert-warning" id='showAlert' style="display:none;">
+			<h4 class="alert-heading">Warning!</h4>
+			<p class="mb-0">You must enter a value.</p>
+		  </div>
 	<form>
 		<input type="text" name="inputValue" id="inputValue">
 	</form>
-	<button onclick="multiplyNumber(inputValue)">Calculate</button>
-
-	<br><div id="result"></div>
-	<br><br><br>
-
-
-	<h2 id="title">5.) Getting User Input </h2>
-	<h3>User Input</h3>
-	<button onclick="userInput()">Get User Input!</button>
-	<p id="demo"> </p>
-	<br><br>
-	<button id="reply" onclick="replyOutput()">Reply!</button>
-	<p id="demo2"> </p>
-
+	<button onclick="multiplyNumber()" id="multnBtn">Calculate</button> &nbsp <div><h3 id="result"></h3></div>
+	<button class="btn-primary text-center" onclick="doAnother()" id="doAnother" style="display:none;">Try Again</button>
 
 	<br><br><br><br>
 
-	<h2 id="title">6.) Change Text Color </h2>
-	<h3 id="color-text">Change Text Color</h3>
-	<button  onclick="changeColor()">Red!</button>
-	<br>
-	<br>
-	<button  onclick="changeColor2()">Blue!</button>
-	<br>
-	<br>
-	<button  onclick="changeColor3()">Black!</button>
+<!-- ------------------------------------------------------------------------------------------------------- -->
+	<h2 id="title">5.) Test Your Multiplcation </h2>
+	<h3>Answer the Appropiate Multiplcation</h3>
+	<form>
+		<h4 style="display:inline-block;">10 x <div id="randomNum" style="display:inline-block;"></div></h4> =
+		 <input type="text" id="multplicationGuess">
+	</form>
+	<button onclick="checkMultplication()">Check Your Answer</button>
+	<br><br><br><br>
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+	<h2 id="title">6.)</h2>
+	<h3 id="color-text"></h3>
 	
 	
 </body>
@@ -206,8 +205,7 @@
 	<ul class="footer-menu">
 		<li><a href="#top">Return to Top</a></li>
     <li><a href="../">Previous Page</a></li>
-	</ul>
-	
-	
+	</ul>	
 </footer>
+</div>
 </html>
