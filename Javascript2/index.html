@@ -143,7 +143,9 @@
 	}
 	}
 	function multiplyNumber(inputValue){
+		var inputValue = document.getElementById('inputValue').value;
 		var newValue = inputValue * 10;
+		document.getElementById('result').innerHTML = newValue;
 		return newValue;
 	}
 
@@ -169,11 +171,12 @@
 	<h2 id="title">4.) Multiplication Function</h2>
 	<h3 id="post-title">Multiples of 10, Enter a Value.</h3>
 	<form>
-		<input type="text" name="inputValue">
+		<input type="text" name="inputValue" id="inputValue">
 	</form>
 	<button onclick="multiplyNumber(inputValue)">Calculate</button>
 
-	<br><br><br><br>
+	<br><div id="result"></div>
+	<br><br><br>
 
 
 	<h2 id="title">5.) Getting User Input </h2>
