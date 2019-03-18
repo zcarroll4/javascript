@@ -130,7 +130,7 @@
 <body>
 <!-- ------------------------------------------------------------------------------------------------------- -->
 	<h2 id="title">6.) Export Table Data To Excel</h2>
-	<table class="table table-bordered" id="tbldata">
+	<table class="table table-bordered table-striped" id="tbldata">
     <thead>
       <th>ID</th>
       <th>First Name</th>
@@ -148,7 +148,7 @@
       </tr>
       
       <tr>
-        <td>001</td>
+        <td>002</td>
         <td>Zachary</td>
         <td>Carroll</td>
         <td>Computer Science</td>
@@ -156,7 +156,7 @@
       </tr>
       
       <tr>
-        <td>001</td>
+        <td>003</td>
         <td>Zachary</td>
         <td>Carroll</td>
         <td>Computer Science</td>
@@ -164,7 +164,7 @@
       </tr>
       
       <tr>
-        <td>001</td>
+        <td>004</td>
         <td>Zachary</td>
         <td>Carroll</td>
         <td>Computer Science</td>
@@ -172,7 +172,7 @@
       </tr>
       
       <tr>
-        <td>001</td>
+        <td>005</td>
         <td>Zachary</td>
         <td>Carroll</td>
         <td>Computer Science</td>
@@ -180,44 +180,12 @@
       </tr>
       
       <tr>
-        <td>001</td>
+        <td>006</td>
         <td>Zachary</td>
         <td>Carroll</td>
         <td>Computer Science</td>
         <td>Parkersburg,WV</td>
-      </tr>
-      
-      <tr>
-        <td>001</td>
-        <td>Zachary</td>
-        <td>Carroll</td>
-        <td>Computer Science</td>
-        <td>Parkersburg,WV</td>
-      </tr>
-      
-      <tr>
-        <td>001</td>
-        <td>Zachary</td>
-        <td>Carroll</td>
-        <td>Computer Science</td>
-        <td>Parkersburg,WV</td>
-      </tr>
-      
-      <tr>
-        <td>001</td>
-        <td>Zachary</td>
-        <td>Carroll</td>
-        <td>Computer Science</td>
-        <td>Parkersburg,WV</td>
-      </tr>
-      
-      <tr>
-        <td>001</td>
-        <td>Zachary</td>
-        <td>Carroll</td>
-        <td>Computer Science</td>
-        <td>Parkersburg,WV</td>
-      </tr>
+      </tr>            
     </tbody>
   </table>
   
@@ -248,4 +216,36 @@
 	</ul>	
 </footer>
 </div>
+	<script>
+		function exportTableToExcel(tableID, filename = ''){
+			var downloadLink;
+			var dataType = 'application/vnd.ms-excel';
+			var tableSelect = document.getElementById(tableID);
+			var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+			// Specify file name
+			filename = filename?filename+'.xls':'excel_data.xls';
+
+			// Create download link element
+			downloadLink = document.createElement("a");
+
+			document.body.appendChild(downloadLink);
+
+			if(navigator.msSaveOrOpenBlob){
+				var blob = new Blob(['\ufeff', tableHTML], {
+					type: dataType
+				});
+				navigator.msSaveOrOpenBlob( blob, filename);
+			}else{
+				// Create a link to the file
+				downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+				// Setting the file name
+				downloadLink.download = filename;
+
+				//triggering the function
+				downloadLink.click();
+			}
+		}
+</script>
 </html>
