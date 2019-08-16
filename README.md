@@ -1,4 +1,4 @@
-### Javascript Training Webiste - Simple Javascript Techniques & Functions
+### Javascript Training Website - Simple Javascript Techniques & Functions
 
 
 ### User Interface Images 
